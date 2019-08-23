@@ -1,4 +1,5 @@
 LETTER_HEIGHT = 7
+ASCII_BOUND = 65
 
 
 def read_letter_data(filename):
@@ -19,28 +20,29 @@ def read_letter_data(filename):
 
 
 def read_user_input():
-    # message = input("Input your message (lowercase only): ")
+    # message = input("Input your message: ")
     # background = input("Input your background emoji: ")
     # foreground = input("Input your foreground emoji: ")
     # return message, background, foreground
-    return "channel", "partyparrot", "parrotwave1"
+    return "CHANNEL", "partyparrot", "parrotwave1"
 
 
-def print_parrots(message, background, foreground, letters):
-    for row in range(7):
+def write_parrots(message, background, foreground, letters):
+    output_file = open("Parrots.txt", 'w')
+    for row in range(LETTER_HEIGHT):
         for letter in message:
-            for pixel in letters[ord(letter) - 97][row]:
+            for pixel in letters[ord(letter) - ASCII_BOUND][row]:
                 if pixel == 0:
-                    print(":" + background + ":", end='')
+                    output_file.write(":" + background + ":")
                 elif pixel == 1:
-                    print(":" + foreground + ":", end='')
-        print()
+                    output_file.write(":" + foreground + ":")
+        output_file.write("\n")
 
 
 def main():
     letters = read_letter_data('letters.txt')
     message, background, foreground = read_user_input()
-    print_parrots(message, background, foreground, letters)
+    write_parrots(message, background, foreground, letters)
 
 
 if __name__ == "__main__":
