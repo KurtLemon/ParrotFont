@@ -1,5 +1,5 @@
 LETTER_HEIGHT = 7
-ASCII_BOUND = 65
+ASCII_BOUND = 32
 
 
 def read_letter_data(filename):
@@ -20,11 +20,10 @@ def read_letter_data(filename):
 
 
 def read_user_input():
-    # message = input("Input your message: ")
-    # background = input("Input your background emoji: ")
-    # foreground = input("Input your foreground emoji: ")
-    # return message, background, foreground
-    return "CHANNEL", "partyparrot", "parrotwave1"
+    message = input("Input your message: ")
+    background = input("Input your background emoji: ")
+    foreground = input("Input your foreground emoji: ")
+    return message, background, foreground
 
 
 def write_parrots(message, background, foreground, letters):
